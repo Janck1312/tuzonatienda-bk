@@ -7,7 +7,6 @@ import { PrismaService } from './exchange/services/PrismaService';
 @Module({
   imports: [
     ConfigModule.forRoot({ isGlobal: true }),
-    PrismaService
   ],
   controllers: [AppController],
   providers: [AppService, PrismaService],
