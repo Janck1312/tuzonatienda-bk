@@ -43,3 +43,12 @@ model Roles {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
+
+model PermissionRoles {
+  id Int @id @default(autoincrement())
+  permissionId Int
+  roleId Int
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  @@unique([permissionId, roleId])
+}
