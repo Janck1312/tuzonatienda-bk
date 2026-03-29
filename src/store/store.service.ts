@@ -1,5 +1,7 @@
 import { BadRequestException, Injectable, NotFoundException } from '@nestjs/common';
 import { PrismaService } from 'src/exchange/services/PrismaService';
+import { CreateStoreDto } from './dto/create-store.dto';
+import { UpdateStoreDto } from './dto/update-store.dto';
 
 @Injectable()
 export class StoreService {
@@ -23,7 +25,7 @@ export class StoreService {
         }
     }
 
-    async create(createStoreDto) {
+    async create(createStoreDto: CreateStoreDto) {
         try {
             const store = await this.prismaService.store.create({ data: createStoreDto });
             return store;
@@ -32,7 +34,7 @@ export class StoreService {
         }
     }
 
-    async update(id: number, updateStoreDto) {
+    async update(id: number, updateStoreDto: UpdateStoreDto) {
         try {
             const store = await this.prismaService.store.update({ where: {id}, data: updateStoreDto });
             return store;
