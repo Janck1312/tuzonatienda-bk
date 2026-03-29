@@ -1,19 +1,18 @@
-import { BadRequestException, Injectable } from '@nestjs/common';
-import { PrismaService } from 'src/exchange/services/PrismaService';
+import { BadRequestException, Injectable } from '@nestjs/common'
+import { PrismaService } from 'src/exchange/services/PrismaService'
+import { PaginationService } from 'src/exchange/services/PaginationService'
 
 @Injectable()
 export class PermissionsService {
-    constructor(
-        private readonly prismaService: PrismaService
-    ) {}
+    constructor(private readonly prismaService: PrismaService) {}
 
     async create(createPermissionDto) {
         try {
             return await this.prismaService.permissions.create({
-                data: createPermissionDto
-            });            
+                data: createPermissionDto,
+            })
         } catch (error) {
-            throw new BadRequestException(error.message);
+            throw new BadRequestException(error.message)
         }
     }
 
@@ -21,38 +20,39 @@ export class PermissionsService {
         try {
             return await this.prismaService.permissions.update({
                 where: { id },
-                data: updatePermissionDto
-            });            
+                data: updatePermissionDto,
+            })
         } catch (error) {
-            throw new BadRequestException(error.message);
+            throw new BadRequestException(error.message)
         }
     }
 
     async delete(id: number) {
         try {
             return await this.prismaService.permissions.delete({
-                where: { id }
-            });            
+                where: { id },
+            })
         } catch (error) {
-            throw new BadRequestException(error.message);
+            throw new BadRequestException(error.message)
         }
     }
 
     async findAll() {
         try {
-            return await this.prismaService.permissions.findMany();            
+            //@ts-ignore
+            return await PaginationService.getInstance(this.prismaService.permissions).paginate(0, 10);
         } catch (error) {
-            throw new BadRequestException(error.message);
+            throw new BadRequestException(error.message)
         }
     }
 
     async findById(id: number) {
         try {
             return await this.prismaService.permissions.findUnique({
-                where: { id }
-            });            
+                where: { id },
+            })
         } catch (error) {
-            throw new BadRequestException(error.message);
+            throw new BadRequestException(error.message)
         }
     }
 }

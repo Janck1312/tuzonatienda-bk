@@ -1,17 +1,17 @@
-import { BadRequestException, Injectable } from '@nestjs/common';
-import { PrismaService } from 'src/exchange/services/PrismaService';
+import { BadRequestException, Injectable } from '@nestjs/common'
+import { PaginationService } from 'src/exchange/services/PaginationService'
+import { PrismaService } from 'src/exchange/services/PrismaService'
 
 @Injectable()
 export class RolesService {
-    constructor(
-        private readonly prismaService: PrismaService,
-    ) {}
+    constructor(private readonly prismaService: PrismaService) {}
 
     async findAll() {
         try {
-            return await this.prismaService.roles.findMany();
+            //@ts-ignore
+            return await PaginationService.getInstance(this.prismaService.roles).paginate(0, 10);
         } catch (error) {
-            throw new BadRequestException(error.message);
+            throw new BadRequestException(error.message)
         }
     }
 
@@ -19,9 +19,9 @@ export class RolesService {
         try {
             return await this.prismaService.roles.findUnique({
                 where: { id },
-            });
+            })
         } catch (error) {
-            throw new BadRequestException(error.message);
+            throw new BadRequestException(error.message)
         }
     }
 
@@ -29,9 +29,9 @@ export class RolesService {
         try {
             return await this.prismaService.roles.findUnique({
                 where: { name },
-            });
+            })
         } catch (error) {
-            throw new BadRequestException(error.message);
+            throw new BadRequestException(error.message)
         }
     }
 
@@ -39,9 +39,9 @@ export class RolesService {
         try {
             return await this.prismaService.roles.findUnique({
                 where: { code },
-            });
+            })
         } catch (error) {
-            throw new BadRequestException(error.message);
+            throw new BadRequestException(error.message)
         }
     }
 
@@ -49,9 +49,9 @@ export class RolesService {
         try {
             return await this.prismaService.roles.create({
                 data: createRolDto,
-            });
+            })
         } catch (error) {
-            throw new BadRequestException(error.message);
+            throw new BadRequestException(error.message)
         }
     }
 
@@ -60,9 +60,9 @@ export class RolesService {
             return await this.prismaService.roles.update({
                 where: { id },
                 data: updateRolDto,
-            });
+            })
         } catch (error) {
-            throw new BadRequestException(error.message);
+            throw new BadRequestException(error.message)
         }
     }
 
@@ -70,9 +70,9 @@ export class RolesService {
         try {
             return await this.prismaService.roles.delete({
                 where: { id },
-            });
+            })
         } catch (error) {
-            throw new BadRequestException(error.message);
+            throw new BadRequestException(error.message)
         }
     }
 }
