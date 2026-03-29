@@ -28,4 +28,20 @@ export class PermissionRolesService {
             throw new Error('Error assigning permissions to role')
         }
     }
+
+    async getByRoleId(roleId: number) {
+        return await this.prismaService.permissionRoles.findMany({
+            where: {
+                roleId,
+            },
+        })
+    }
+
+    async getByPermissionId(permissionId: number) {
+        return await this.prismaService.permissionRoles.findMany({
+            where: {
+                permissionId,
+            },
+        })
+    }
 }
