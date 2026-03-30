@@ -10,8 +10,8 @@ export class PaginationService {
     }
 
     async paginate<T>(
-        page: number,
-        limit: number,
+        page: number = 0,
+        limit: number = 20,
     ): Promise<paginationResponseDto<T>> {
         const totalItems = (await this.model.count()) as number
         const totalPages = Math.ceil(totalItems / limit)

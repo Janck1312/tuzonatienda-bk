@@ -52,3 +52,22 @@ model PermissionRoles {
   updatedAt DateTime @updatedAt
   @@unique([permissionId, roleId])
 }
+
+
+model Users {
+  id Int @id @default(autoincrement())
+  firstName String
+  lastName String
+  identification String @unique
+  email String @unique
+  bornDate DateTime
+  phone Json
+  age Int
+  address String
+  aditionalPermissions Json
+  storeId Int?
+  password String
+  @@index([storeId])
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}

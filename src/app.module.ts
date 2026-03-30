@@ -7,6 +7,7 @@ import { StoreModule } from './store/store.module'
 import { PermissionsModule } from './permissions/permissions.module'
 import { RolesModule } from './roles/roles.module'
 import { PermissionRolesModule } from './permission-roles/permission-roles.module'
+import { UsersModule } from './users/users.module';
 
 @Module({
     imports: [
@@ -15,6 +16,7 @@ import { PermissionRolesModule } from './permission-roles/permission-roles.modul
         PermissionsModule,
         RolesModule,
         PermissionRolesModule,
+        UsersModule,
     ],
     controllers: [AppController],
     providers: [AppService, PrismaService],
