@@ -1,11 +1,11 @@
-import { ApiProperty } from '@nestjs/swagger'
+import { ApiProperty } from '@nestjs/swagger';
 import {
     IsEmail,
     IsJSON,
     IsNumber,
     IsOptional,
     IsString,
-} from 'class-validator'
+} from 'class-validator';
 
 export class UpdateStoreDto {
     @ApiProperty({
@@ -15,7 +15,7 @@ export class UpdateStoreDto {
     })
     @IsOptional({ message: 'The name of the store is required' })
     @IsString({ message: 'The name of the store must be a string' })
-    name: string
+    name: string;
 
     @ApiProperty({
         type: String,
@@ -24,7 +24,7 @@ export class UpdateStoreDto {
     })
     @IsOptional({ message: 'The business name of the store is required' })
     @IsString({ message: 'The business name of the store must be a string' })
-    businessName: string
+    businessName: string;
 
     @ApiProperty({
         type: String,
@@ -37,7 +37,7 @@ export class UpdateStoreDto {
     @IsString({
         message: 'The identification number of the store must be a string',
     })
-    identification: string
+    identification: string;
 
     @ApiProperty({
         type: String,
@@ -50,7 +50,7 @@ export class UpdateStoreDto {
         {},
         { message: 'The email of the store must be a valid email address' },
     )
-    email: string
+    email: string;
 
     @ApiProperty({
         type: String,
@@ -58,7 +58,7 @@ export class UpdateStoreDto {
         required: false,
     })
     @IsString({ message: 'The address of the store must be a string' })
-    address: string
+    address: string;
 
     @ApiProperty({
         type: String,
@@ -69,7 +69,7 @@ export class UpdateStoreDto {
     @IsJSON({
         message: 'The phone numbers of the store must be a valid JSON string',
     })
-    phones: string
+    phones: string;
 
     @ApiProperty({
         type: String,
@@ -78,7 +78,7 @@ export class UpdateStoreDto {
     })
     @IsString({ message: 'The logo of the store must be a string' })
     @IsOptional({ message: 'The logo of the store cannot be empty' })
-    logo: string
+    logo: string;
 
     @ApiProperty({
         type: String,
@@ -87,7 +87,7 @@ export class UpdateStoreDto {
     })
     @IsString({ message: 'The front page image of the store must be a string' })
     @IsOptional()
-    frontPageImg: string
+    frontPageImg: string;
 
     @ApiProperty({
         type: String,
@@ -98,7 +98,7 @@ export class UpdateStoreDto {
         message: 'The geolocation of the store must be a valid JSON string',
     })
     @IsOptional()
-    geolocalizacion: string
+    geolocalizacion: string;
 
     @ApiProperty({
         type: Number,
@@ -110,5 +110,5 @@ export class UpdateStoreDto {
         { message: 'The ID of the owner of the store must be a number' },
     )
     @IsOptional({ message: 'The ID of the owner of the store is required' })
-    ownerId: number
+    ownerId: number;
 }

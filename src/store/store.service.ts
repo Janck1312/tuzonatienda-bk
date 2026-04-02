@@ -2,11 +2,11 @@ import {
     BadRequestException,
     Injectable,
     NotFoundException,
-} from '@nestjs/common'
-import { PrismaService } from 'src/exchange/services/PrismaService'
-import { CreateStoreDto } from './dto/create-store.dto'
-import { UpdateStoreDto } from './dto/update-store.dto'
-import { PaginationService } from 'src/exchange/services/PaginationService'
+} from '@nestjs/common';
+import { PrismaService } from 'src/exchange/services/PrismaService';
+import { CreateStoreDto } from './dto/create-store.dto';
+import { UpdateStoreDto } from './dto/update-store.dto';
+import { PaginationService } from 'src/exchange/services/PaginationService';
 
 @Injectable()
 export class StoreService {
@@ -15,11 +15,13 @@ export class StoreService {
     async findAll() {
         try {
             //@ts-ignore
-            return await PaginationService.getInstance(this.prismaService.store).paginate(0, 10);
+            return await PaginationService.getInstance(
+                this.prismaService.store,
+            ).paginate(0, 10);
         } catch (error) {
             throw new BadRequestException(
                 'Error fetching stores: ' + error.message,
-            )
+            );
         }
     }
 
@@ -27,9 +29,9 @@ export class StoreService {
         try {
             return await this.prismaService.store.findFirstOrThrow({
                 where: { id },
-            })
+            });
         } catch (error) {
-            throw new NotFoundException(`Store with id ${id} not found.`)
+            throw new NotFoundException(`Store with id ${id} not found.`);
         }
     }
 
@@ -37,12 +39,12 @@ export class StoreService {
         try {
             const store = await this.prismaService.store.create({
                 data: createStoreDto,
-            })
-            return store
+            });
+            return store;
         } catch (error) {
             throw new BadRequestException(
                 'Error creating store: ' + error.message,
-            )
+            );
         }
     }
 
@@ -51,26 +53,26 @@ export class StoreService {
             const store = await this.prismaService.store.update({
                 where: { id },
                 data: updateStoreDto,
-            })
-            return store
+            });
+            return store;
         } catch (error) {
             throw new BadRequestException(
                 'Error updating store: ' + error.message,
-            )
+            );
         }
     }
 
     async delete(id: number) {
         try {
-            await this.prismaService.store.delete({ where: { id } })
+            await this.prismaService.store.delete({ where: { id } });
             return {
                 message: `Store with id ${id} deleted successfully.`,
                 success: true,
-            }
+            };
         } catch (error) {
             throw new BadRequestException(
                 'Error deleting store: ' + error.message,
-            )
+            );
         }
     }
 }

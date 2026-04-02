@@ -3,9 +3,7 @@ import { UsersService } from './users.service';
 
 @Controller('users')
 export class UsersController {
-    constructor(
-        private readonly usersService: UsersService
-    ) {}
+    constructor(private readonly usersService: UsersService) {}
 
     @Get()
     findAll() {
@@ -13,17 +11,17 @@ export class UsersController {
     }
 
     @Get(':id')
-    findById(@Param("id") id:number) {
+    findById(@Param('id') id: number) {
         return this.usersService.findById(id);
     }
 
     @Get('by-email/:email')
-    findByEmail(@Param("email") email:string) {
+    findByEmail(@Param('email') email: string) {
         return this.usersService.findByEmail(email);
     }
 
     @Get('by-identification/:identification')
-    findByIdentification(@Param("identification") identification:string) {
+    findByIdentification(@Param('identification') identification: string) {
         return this.usersService.findByIdentification(identification);
     }
 
@@ -33,12 +31,12 @@ export class UsersController {
     }
 
     @Put(':id')
-    update(@Param("id") id:number, updateUserDto) {
+    update(@Param('id') id: number, updateUserDto) {
         return this.usersService.update(id, updateUserDto);
     }
 
     @Delete(':id')
-    delete(@Param("id") id:number) {
+    delete(@Param('id') id: number) {
         return this.usersService.delete(id);
     }
 }

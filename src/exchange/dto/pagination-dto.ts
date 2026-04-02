@@ -1,13 +1,13 @@
-import { ApiProperty } from '@nestjs/swagger'
-import { Type } from 'class-transformer'
-import { IsNotEmpty, IsNumber, IsOptional, IsString } from 'class-validator'
+import { ApiProperty } from '@nestjs/swagger';
+import { Type } from 'class-transformer';
+import { IsNotEmpty, IsNumber, IsOptional, IsString } from 'class-validator';
 
 export class paginationDto {
     @ApiProperty({ description: 'Page number', example: 1, required: true })
     @Type(() => Number)
     @IsNumber()
     @IsNotEmpty()
-    page: number
+    page: number;
 
     @ApiProperty({
         description: 'Number of items per page',
@@ -17,7 +17,7 @@ export class paginationDto {
     @Type(() => Number)
     @IsNumber()
     @IsNotEmpty()
-    limit: number
+    limit: number;
 
     @ApiProperty({
         description: 'Search query',
@@ -27,16 +27,16 @@ export class paginationDto {
     @Type(() => String)
     @IsOptional()
     @IsString()
-    search?: string
+    search?: string;
 }
 
 export class paginationResponseDto<T> {
     @ApiProperty({ description: 'Items for the current page', example: [] })
-    items: T[]
+    items: T[];
     @ApiProperty({ description: 'Total number of items', example: 100 })
-    totalItems: number
+    totalItems: number;
     @ApiProperty({ description: 'Total number of pages', example: 10 })
-    totalPages: number
+    totalPages: number;
     @ApiProperty({ description: 'Current page number', example: 1 })
-    currentPage: number
+    currentPage: number;
 }

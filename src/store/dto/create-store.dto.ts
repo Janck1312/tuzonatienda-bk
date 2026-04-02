@@ -1,5 +1,5 @@
-import { ApiProperty } from '@nestjs/swagger'
-import { InputJsonValue } from '@prisma/client/runtime/client'
+import { ApiProperty } from '@nestjs/swagger';
+import { InputJsonValue } from '@prisma/client/runtime/client';
 import {
     IsEmail,
     IsJSON,
@@ -7,7 +7,7 @@ import {
     IsNumber,
     IsOptional,
     IsString,
-} from 'class-validator'
+} from 'class-validator';
 
 export class CreateStoreDto {
     @ApiProperty({
@@ -17,7 +17,7 @@ export class CreateStoreDto {
     })
     @IsNotEmpty({ message: 'The name of the store is required' })
     @IsString({ message: 'The name of the store must be a string' })
-    name: string
+    name: string;
 
     @ApiProperty({
         type: String,
@@ -26,7 +26,7 @@ export class CreateStoreDto {
     })
     @IsNotEmpty({ message: 'The business name of the store is required' })
     @IsString({ message: 'The business name of the store must be a string' })
-    businessName: string
+    businessName: string;
 
     @ApiProperty({
         type: String,
@@ -39,7 +39,7 @@ export class CreateStoreDto {
     @IsString({
         message: 'The identification number of the store must be a string',
     })
-    identification: string
+    identification: string;
 
     @ApiProperty({
         type: String,
@@ -52,7 +52,7 @@ export class CreateStoreDto {
         {},
         { message: 'The email of the store must be a valid email address' },
     )
-    email: string
+    email: string;
 
     @ApiProperty({
         type: String,
@@ -60,7 +60,7 @@ export class CreateStoreDto {
         required: false,
     })
     @IsString({ message: 'The address of the store must be a string' })
-    address: string
+    address: string;
 
     @ApiProperty({
         type: String,
@@ -71,7 +71,7 @@ export class CreateStoreDto {
     @IsJSON({
         message: 'The phone numbers of the store must be a valid JSON string',
     })
-    phones: string
+    phones: string;
 
     @ApiProperty({
         type: String,
@@ -80,7 +80,7 @@ export class CreateStoreDto {
     })
     @IsString({ message: 'The logo of the store must be a string' })
     @IsNotEmpty({ message: 'The logo of the store cannot be empty' })
-    logo: string
+    logo: string;
 
     @ApiProperty({
         type: String,
@@ -89,7 +89,7 @@ export class CreateStoreDto {
     })
     @IsString({ message: 'The front page image of the store must be a string' })
     @IsOptional()
-    frontPageImg: string
+    frontPageImg: string;
 
     @ApiProperty({
         type: String,
@@ -100,7 +100,7 @@ export class CreateStoreDto {
         message: 'The geolocation of the store must be a valid JSON string',
     })
     @IsOptional()
-    geolocalizacion: string
+    geolocalizacion: string;
 
     @ApiProperty({
         type: Number,
@@ -112,5 +112,5 @@ export class CreateStoreDto {
         { message: 'The ID of the owner of the store must be a number' },
     )
     @IsNotEmpty({ message: 'The ID of the owner of the store is required' })
-    ownerId: number
+    ownerId: number;
 }

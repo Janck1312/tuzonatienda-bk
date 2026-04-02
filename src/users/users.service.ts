@@ -4,86 +4,74 @@ import { PrismaService } from 'src/exchange/services/PrismaService';
 
 @Injectable()
 export class UsersService {
-    constructor(
-        private readonly prismaService: PrismaService
-    ) {}
+    constructor(private readonly prismaService: PrismaService) {}
 
     async findAll() {
         try {
             //@ts-ignore
-            return await PaginationService.getInstance(this.prismaService.users).paginate();
-        } catch (error) {
-            
-        }
+            return await PaginationService.getInstance(
+                this.prismaService.users,
+            ).paginate();
+        } catch (error) {}
     }
 
-    async findById(id:number) {
+    async findById(id: number) {
         try {
             return await this.prismaService.users.findUniqueOrThrow({
                 where: {
-                    id
-                }
+                    id,
+                },
             });
-        } catch (error) {
-            
-        }
+        } catch (error) {}
     }
 
-    async findByEmail(email:string) {
+    async findByEmail(email: string) {
         try {
             return await this.prismaService.users.findUniqueOrThrow({
                 where: {
-                    email
-                }
+                    email,
+                },
             });
-        } catch (error) {
-            
-        }
+        } catch (error) {}
     }
 
-    async findByIdentification(identification:string) {
+    async findByIdentification(identification: string) {
         try {
             return await this.prismaService.users.findUniqueOrThrow({
                 where: {
-                    identification
-                }
+                    identification,
+                },
             });
-        } catch (error) {
-            
-        }
+        } catch (error) {}
     }
 
     async create(createUserDto) {
         try {
             return await this.prismaService.users.create({
-                data: createUserDto
+                data: createUserDto,
             });
-        } catch (error) {
-            
-        }
+        } catch (error) {}
     }
 
-    async update(id:number, updateUserDto) {
+    async update(id: number, updateUserDto) {
         try {
             return await this.prismaService.users.update({
                 where: {
-                    id
+                    id,
                 },
-                data: updateUserDto
+                data: updateUserDto,
             });
-        }catch (error) {}
+        } catch (error) {}
     }
 
-    async delete(id:number) {
+    async delete(id: number) {
         try {
             await this.prismaService.users.delete({
                 where: {
-                    id
-                }
+                    id,
+                },
             });
             return { success: true };
-        } catch (error) {
-            
-        }
+        } catch (error) {}
     }
 }

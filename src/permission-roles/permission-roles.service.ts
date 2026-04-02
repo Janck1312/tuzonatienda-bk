@@ -1,5 +1,5 @@
-import { Injectable } from '@nestjs/common'
-import { PrismaService } from 'src/exchange/services/PrismaService'
+import { Injectable } from '@nestjs/common';
+import { PrismaService } from 'src/exchange/services/PrismaService';
 
 @Injectable()
 export class PermissionRolesService {
@@ -14,7 +14,7 @@ export class PermissionRolesService {
                 where: {
                     roleId: assignPermissionToRoleDto.roleId,
                 },
-            })
+            });
 
             return await this.prismaService.permissionRoles.createMany({
                 data: assignPermissionToRoleDto.permissionIds.map(
@@ -23,9 +23,9 @@ export class PermissionRolesService {
                         permissionId,
                     }),
                 ),
-            })
+            });
         } catch (error) {
-            throw new Error('Error assigning permissions to role')
+            throw new Error('Error assigning permissions to role');
         }
     }
 
@@ -34,7 +34,7 @@ export class PermissionRolesService {
             where: {
                 roleId,
             },
-        })
+        });
     }
 
     async getByPermissionId(permissionId: number) {
@@ -42,6 +42,6 @@ export class PermissionRolesService {
             where: {
                 permissionId,
             },
-        })
+        });
     }
 }
